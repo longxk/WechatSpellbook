@@ -7,6 +7,7 @@ import com.gh0u1l5.wechatmagician.spellbook.interfaces.IXmlParserHook
 import com.gh0u1l5.wechatmagician.spellbook.mirror.com.tencent.mm.sdk.platformtools.Methods.XmlParser_parse
 import de.robv.android.xposed.XC_MethodHook
 import de.robv.android.xposed.XposedBridge.hookMethod
+import de.robv.android.xposed.XposedBridge.log
 
 object XmlParser : EventCenter() {
 
@@ -23,16 +24,16 @@ object XmlParser : EventCenter() {
     private val onXmlParseHooker = Hooker {
         hookMethod(XmlParser_parse, object : XC_MethodHook() {
             override fun beforeHookedMethod(param: MethodHookParam) {
-                val xml  = param.args[0] as String
-                val root = param.args[1] as String
+                val xml  = param.args[0] as String? ?: return
+                val root = param.args[1] as String? ?: return
                 notifyForOperations("onXmlParsing", param) { plugin ->
                     (plugin as IXmlParserHook).onXmlParsing(xml, root)
                 }
             }
             @Suppress("UNCHECKED_CAST")
             override fun afterHookedMethod(param: MethodHookParam) {
-                val xml    = param.args[0] as String
-                val root   = param.args[1] as String
+                val xml = param.args[0] as String? ?: return
+                val root = param.args[1] as String? ?: return
                 val result = param.result as MutableMap<String, String>? ?: return
                 notify("onXmlParsed") { plugin ->
                     (plugin as IXmlParserHook).onXmlParsed(xml, root, result)

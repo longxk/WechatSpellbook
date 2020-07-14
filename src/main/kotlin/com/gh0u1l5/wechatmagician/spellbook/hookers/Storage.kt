@@ -1,5 +1,6 @@
 package com.gh0u1l5.wechatmagician.spellbook.hookers
 
+import com.gh0u1l5.wechatmagician.spellbook.WechatStatus
 import com.gh0u1l5.wechatmagician.spellbook.base.EventCenter
 import com.gh0u1l5.wechatmagician.spellbook.base.Hooker
 import com.gh0u1l5.wechatmagician.spellbook.interfaces.IImageStorageHook
@@ -28,12 +29,13 @@ object Storage : EventCenter() {
         }
     }
 
-    private val onMessageStorageCreateHooker = Hooker {
+    private val onMessageStorageCreateHooker = Hooker(true) {
         hookAllConstructors(MsgInfoStorage, object : XC_MethodHook() {
             override fun afterHookedMethod(param: MethodHookParam) {
                 notify("onMessageStorageCreated") { plugin ->
                     (plugin as IMessageStorageHook).onMessageStorageCreated(param.thisObject)
                 }
+                WechatStatus.toggle(WechatStatus.StatusFlag.STATUS_FLAG_MSG_STORAGE)
             }
         })
     }

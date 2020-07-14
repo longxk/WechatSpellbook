@@ -41,7 +41,7 @@ object XposedUtil {
      * postHooker posts the hooker to [hookerHandlerThread] for further process.
      */
     fun postHooker(hooker: Hooker) {
-        hookerHandler.post {
+        val runnable = {
             tryHook {
                 synchronized(hooker) {
                     if (hooker.hasHooked) {
@@ -51,6 +51,12 @@ object XposedUtil {
                     hooker.hasHooked = true
                 }
             }
+        }
+
+        if (hooker.sync) {
+            runnable.invoke()
+        } else {
+            hookerHandler.post(runnable)
         }
     }
 }

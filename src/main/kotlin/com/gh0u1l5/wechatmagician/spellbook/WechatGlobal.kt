@@ -69,7 +69,7 @@ object WechatGlobal {
             }
         } else {
             lazy(LazyThreadSafetyMode.PUBLICATION) {
-                initializeChannel.wait(8000)
+                initializeChannel.wait(16000)
                 when (null) {
                     wxVersion     -> throw Error("Invalid wxVersion")
                     wxPackageName -> throw Error("Invalid wxPackageName")

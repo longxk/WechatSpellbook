@@ -152,7 +152,7 @@ object ReflectionUtil {
     }
 
     private fun getParametersString(vararg clazzes: Class<*>): String =
-            "(${clazzes.joinToString(","){ it.canonicalName }})"
+            "(${clazzes.joinToString(",") { it.canonicalName ?: "unknown" } })"
 
     @JvmStatic fun findMethodExact(clazz: Class<*>, methodName: String, vararg parameterTypes: Class<*>): Method {
         val fullMethodName = "${clazz.name}#$methodName${getParametersString(*parameterTypes)}#exact"

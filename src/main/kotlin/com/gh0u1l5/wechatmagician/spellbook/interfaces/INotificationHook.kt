@@ -6,8 +6,8 @@ interface INotificationHook {
      * The bean class that describes a notification message.
      */
     data class Message(
-            val talker: String,
-            val content: String,
+            val talker: String?,
+            val content: String?,
             val type: Int,
             val tipsFlag: Int
     )

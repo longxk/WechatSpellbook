@@ -49,9 +49,9 @@ object SpellBook {
             !processName.contains(':') -> {
                 // Found main process, continue
             }
-            processName.endsWith(":tools") -> {
-                // Found :tools process, continue
-            }
+//            processName.endsWith(":tools") -> {
+//                // Found :tools process, continue
+//            }
             else -> return false
         }
         val features = listOf (
@@ -125,7 +125,7 @@ object SpellBook {
     private fun registerPlugins(plugins: List<Any>?) {
         val observers = plugins?.filter { it !is HookerProvider } ?: listOf()
         centers.forEach { center ->
-            tryAsynchronously {
+            //tryAsynchronously {
                 center.interfaces.forEach { `interface` ->
                     observers.forEach { plugin ->
                         val assignable = `interface`.isAssignableFrom(plugin::class.java)
@@ -134,7 +134,7 @@ object SpellBook {
                         }
                     }
                 }
-            }
+            //}
         }
     }
 

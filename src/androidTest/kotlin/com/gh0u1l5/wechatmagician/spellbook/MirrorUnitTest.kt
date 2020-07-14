@@ -39,7 +39,7 @@ class MirrorUnitTest {
 
         val apkFile = File(cacheDir, apkPath)
         try {
-            javaClass.classLoader.getResourceAsStream(apkPath).use {
+            javaClass.classLoader?.getResourceAsStream(apkPath)?.use {
                 FileUtil.writeInputStreamToDisk(apkFile.absolutePath, it)
             }
         } catch (t: Throwable) {
@@ -53,9 +53,7 @@ class MirrorUnitTest {
             WechatGlobal.wxVersion = Version(it.apkMeta.versionName)
             WechatGlobal.wxPackageName = it.apkMeta.packageName
             WechatGlobal.wxLoader = PathClassLoader(apkFile.absolutePath, getSystemClassLoader())
-            WechatGlobal.wxClasses = it.dexClasses.map { clazz ->
-                ReflectionUtil.ClassName(clazz.classType)
-            }
+            WechatGlobal.wxClasses = it.dexClasses.map { clazz -> clazz.classType }
 
             val objects = MirrorClasses + MirrorMethods + MirrorFields
             ReflectionUtil.clearClassCache()

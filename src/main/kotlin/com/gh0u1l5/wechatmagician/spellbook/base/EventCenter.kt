@@ -78,7 +78,7 @@ abstract class EventCenter: HookerProvider {
      * @param action the actual codes which notify the observers and return a bypass flag.
      */
     fun notifyForBypassFlags(event: String, param: XC_MethodHook.MethodHookParam, default: Any? = null, action: (Any) -> Boolean) {
-        val shouldBypass = notifyForResults(event, action).any()
+        val shouldBypass = notifyForResults(event, action).any { it }
         if (shouldBypass) {
             param.result = default
         }

@@ -2,6 +2,7 @@ package com.gh0u1l5.wechatmagician.spellbook.hookers
 
 import android.content.ContentValues
 import com.gh0u1l5.wechatmagician.spellbook.C
+import com.gh0u1l5.wechatmagician.spellbook.WechatStatus
 import com.gh0u1l5.wechatmagician.spellbook.base.EventCenter
 import com.gh0u1l5.wechatmagician.spellbook.base.Hooker
 import com.gh0u1l5.wechatmagician.spellbook.interfaces.IDatabaseHook
@@ -51,6 +52,7 @@ object Database : EventCenter() {
                 notifyForOperations("onDatabaseOpened", param) { plugin ->
                     (plugin as IDatabaseHook).onDatabaseOpened(path, factory, flags, handler, result)
                 }
+                WechatStatus.toggle(WechatStatus.StatusFlag.STATUS_FLAG_DATABASE)
             }
         })
     }
@@ -58,7 +60,7 @@ object Database : EventCenter() {
     private val onQueryHooker = Hooker {
         findAndHookMethod(
                 SQLiteDatabase, "rawQueryWithFactory",
-                SQLiteCursorFactory, C.String, C.StringArray, C.String, SQLiteCancellationSignal, object : XC_MethodHook() {
+                SQLiteCursorFactory, C.String, C.ObjectArray, C.String, SQLiteCancellationSignal, object : XC_MethodHook() {
             @Suppress("UNCHECKED_CAST")
             override fun beforeHookedMethod(param: MethodHookParam) {
                 val thisObject    = param.thisObject
@@ -126,7 +128,7 @@ object Database : EventCenter() {
             @Suppress("UNCHECKED_CAST")
             override fun beforeHookedMethod(param: MethodHookParam) {
                 val thisObject        = param.thisObject
-                val table             = param.args[0] as String
+                val table             = (param.args[0] as String?) ?: ""
                 val values            = param.args[1] as ContentValues
                 val whereClause       = param.args[2] as String?
                 val whereArgs         = param.args[3] as Array<String>?
@@ -139,7 +141,7 @@ object Database : EventCenter() {
             @Suppress("UNCHECKED_CAST")
             override fun afterHookedMethod(param: MethodHookParam) {
                 val thisObject        = param.thisObject
-                val table             = param.args[0] as String
+                val table             = (param.args[0] as String?) ?: ""
                 val values            = param.args[1] as ContentValues
                 val whereClause       = param.args[2] as String?
                 val whereArgs         = param.args[3] as Array<String>?
