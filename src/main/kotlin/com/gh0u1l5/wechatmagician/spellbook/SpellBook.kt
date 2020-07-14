@@ -87,7 +87,7 @@ object SpellBook {
      */
     fun getApplicationApkPath(packageName: String): String {
         val pm = getSystemContext().packageManager
-        val apkPath = pm.getApplicationInfo(packageName, 0)?.publicSourceDir
+        val apkPath = pm.getApplicationInfo(packageName, 0).publicSourceDir
         return apkPath ?: throw Error("Failed to get the APK path of $packageName")
     }
 

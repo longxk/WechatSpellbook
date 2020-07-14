@@ -20,7 +20,7 @@ object FileUtil {
      * 若文件及其所在目录不存在的话, 会尝试建立该文件和目录
      */
     @JvmStatic fun writeBytesToDisk(path: String, content: ByteArray) {
-        val file = File(path).also { it.parentFile.mkdirs() }
+        val file = File(path).also { it.parentFile?.mkdirs() }
         val fout = FileOutputStream(file)
         BufferedOutputStream(fout).use { it.write(content) }
     }
@@ -66,7 +66,7 @@ object FileUtil {
      */
     @JvmStatic fun writeInputStreamToDisk(path: String, ins: InputStream, bufferSize: Int = 8192) {
         val file = File(path)
-        file.parentFile.mkdirs()
+        file.parentFile?.mkdirs()
         val fout = FileOutputStream(file)
         BufferedOutputStream(fout).use {
             val buffer = ByteArray(bufferSize)
