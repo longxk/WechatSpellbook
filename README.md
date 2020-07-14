@@ -2,7 +2,17 @@
 
 [![Build Status](https://travis-ci.org/Gh0u1L5/WechatSpellbook.svg?branch=master)](https://travis-ci.org/Gh0u1L5/WechatSpellbook) [![Maven Central](https://maven-badges.herokuapp.com/maven-central/com.github.gh0u1l5/wechat-spellbook/badge.svg)](https://maven-badges.herokuapp.com/maven-central/com.github.gh0u1l5/wechat-spellbook)
 
-__开发文档写了个开头了，请稍安勿躁……如果真的很好奇，你也可以偷偷看代码呀。__
+---
+
+### 2018.11.24 状态更新
+
+最近半年实在是太忙了，一直没有更新项目。
+
+最近先是花了一天多时间，解决了一下拖了很久的性能问题。通过重写APK Parser、启用新的数据结构和并行计算模块，把性能提升了10倍不止，详情可以参见这两个commit：[5bf7804](../../commit/5bf7804664606dd6280d5a0dc6e33f3a9ffbb5a6) & [388e25f](../../commit/388e25f904e73633f6639ae1b9e1aa1d959607cb)
+
+然后，就是把项目中的注释几乎全盘改成了中文，方便以后的交流。剩下还没有改完的部分诚求热心人帮一下忙，翻译起来实在是太累了。
+
+接下来会找机会把目前提交的issue看一下，把6.6.x及以上的微信版本都适配一下，不过这可能要等到12月底了吧。
 
 ---
 
@@ -22,6 +32,10 @@ Wechat Spellbook 是一个使用Kotlin编写的开源微信插件框架，底层
 * 正确使用 _EventCenter_ 方案，有助于回避Xposed的一些小问题，如
   - 函数调用被前一个劫持者打断导致的插件相互冲突。
   - Xposed自Android 7.0后偶发的，由于多线程导致ART崩溃的问题。
+
+## 衍生项目
+* [WechatMagician](https://github.com/Gh0u1L5/WechatMagician)
+* [WechatBotXposed](https://github.com/Blankeer/WechatBotXposed)
 
 ## 开发文档
 * [简介](https://github.com/Gh0u1L5/WechatSpellbook/wiki/Home)
@@ -52,3 +66,9 @@ Wechat Spellbook 是一个使用Kotlin编写的开源微信插件框架，底层
 其二，我太过理想主义。中国互联网在很早的时候就已经是一个相当商业化的世界了。我并不反对商业化，也不觉得商业化有任何的道德问题。人，总归是要吃饭的。像fkzhang这样能靠自己的才华吃饭，既不偷也不抢，这有什么错呢？但是我心里总归是感觉到失落的，因为我最早爱上的，是一个自由的互联网，是一个为每个有才华有求知欲的年轻人准备的儿童乐园。只要思想用0和1表达出来，就再也没有什么规则能够阻挡他们，他们就是儿童乐园之王。我希望当我国的年轻一代对计算机产生好奇时，也能像西方国家的孩子们一样，能够轻松地、无语言障碍地，接触到大量好玩有趣的个人开源项目，进而爱上这个0与1的世界。如果有年轻的初中、高中的学弟学妹，能够用我的项目把微信像橡皮泥一样随意揉捏，像当年的我一样深深地享受到这个世界的乐趣，那么对我实在是一种莫大的鼓励与快乐。
 
 当然，对于诸位想要基于我的项目做商业项目的开发者，也请尽管拿去。我不喜欢道德绑架别人，也不认为这有什么绑架的必要。但是如果你在闲暇时间能够贡献十几行代码、修复些你发现的Bug，那就已经十分感激。
+
+## 打赏二维码
+
+应 [Issue #5](https://github.com/Gh0u1L5/WechatSpellbook/issues/5) 的请求，贴上打赏二维码，让我们回归平和的技术讨论。
+
+<img src="https://github.com/Gh0u1L5/WechatMagician/raw/master/image/qrcode_tenpay.png" width="40%" /> <img src="https://github.com/Gh0u1L5/WechatMagician/raw/master/image/qrcode_alipay.jpg" width="40%" />
