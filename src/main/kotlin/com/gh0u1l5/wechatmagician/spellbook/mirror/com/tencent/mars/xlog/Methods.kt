@@ -12,4 +12,12 @@ object Methods {
     val Xlog_logWrite2: Method by wxLazy("Xlog_logWrite2") {
         Xlog.declaredMethods.find { it.name == "logWrite2" }
     }
+
+    val Xlog_setConsoleLogOpen: Method by wxLazy("Xlog_setConsoleLogOpen") {
+        Xlog.declaredMethods.find { it.name == "setConsoleLogOpen" }
+    }
+
+    val Xlog_appenderOpen: Method by wxLazy("Xlog_appenderOpen") {
+        Xlog.declaredMethods.find { it.name == "AppenderOpen" }
+    }
 }

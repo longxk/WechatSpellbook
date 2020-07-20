@@ -1,4 +1,3 @@
-// 重复添加同样的依赖，以保证Spellbook能够独立编译
 buildscript {
     ext {
         dokka_version = '0.9.17'
@@ -49,15 +48,10 @@ android {
         androidTest.java.srcDirs += "src/androidTest/kotlin"
     }
     android.libraryVariants.all { variant ->
-        variant.javaCompiler.dependsOn(generateMirrorClassesList)
-        variant.javaCompiler.dependsOn(generateMirrorMethodsList)
-        variant.javaCompiler.dependsOn(generateMirrorFieldsList)
+        variant.registerJavaGeneratingTask(generateMirrorClassesList)
+        variant.registerJavaGeneratingTask(generateMirrorMethodsList)
+        variant.registerJavaGeneratingTask(generateMirrorFieldsList)
     }
-}
-
-repositories {
-    jcenter()
-    google()
 }
 
 dependencies {

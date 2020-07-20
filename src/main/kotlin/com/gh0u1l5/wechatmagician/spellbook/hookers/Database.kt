@@ -146,7 +146,7 @@ object Database : EventCenter() {
                 val whereClause       = param.args[2] as String?
                 val whereArgs         = param.args[3] as Array<String>?
                 val conflictAlgorithm = param.args[4] as Int
-                val result            = param.result as Int
+                val result            = param.result as Int? ?: 0
                 notifyForOperations("onDatabaseUpdated", param) { plugin ->
                     (plugin as IDatabaseHook).onDatabaseUpdated(
                             thisObject, table, values, whereClause, whereArgs, conflictAlgorithm, result)

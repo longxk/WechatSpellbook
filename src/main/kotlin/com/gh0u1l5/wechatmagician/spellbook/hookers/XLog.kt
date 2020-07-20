@@ -23,9 +23,9 @@ object XLog : EventCenter() {
                 val level = toHumanReadableLevel(param.args[0] as Int)
                 val tag   = param.args[1] as String? ?: ""
                 val msg   = param.args[8] as String? ?: ""
-                notifyParallel("onXLogWrite", { plugin ->
+                notifyParallel("onXLogWrite") { plugin ->
                     (plugin as IXLogHook).onXLogWrite(level, tag, msg)
-                })
+                }
             }
         })
     }
