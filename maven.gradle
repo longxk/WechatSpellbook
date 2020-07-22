@@ -76,7 +76,7 @@ afterEvaluate { project ->
         sign configurations.archives
     }
 
-    task javadocJar(type: Jar, dependsOn: dokkaJavadoc) {
+    task javadocJar(type: Jar, dependsOn: dokka) {
         classifier = 'javadoc'
         from "$buildDir/dokkaJavadoc"
     }
