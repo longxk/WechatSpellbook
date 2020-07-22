@@ -20,6 +20,8 @@ apply plugin: 'org.jetbrains.dokka-android'
 
 android {
     compileSdkVersion 29
+    buildToolsVersion '29.0.3'
+
     defaultConfig {
         minSdkVersion 19
         targetSdkVersion 29
@@ -28,6 +30,7 @@ android {
 
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
+
     buildTypes {
         release {
             postprocessing {
@@ -39,14 +42,17 @@ android {
             }
         }
     }
+
     lintOptions {
         abortOnError false
     }
+
     sourceSets {
         main.java.srcDirs += 'src/main/kotlin'
         test.java.srcDirs += 'src/test/kotlin'
         androidTest.java.srcDirs += "src/androidTest/kotlin"
     }
+
     android.libraryVariants.all { variant ->
         variant.registerJavaGeneratingTask(generateMirrorClassesList)
         variant.registerJavaGeneratingTask(generateMirrorMethodsList)
