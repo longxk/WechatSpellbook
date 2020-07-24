@@ -175,7 +175,7 @@ object Database : EventCenter() {
                 val table       = param.args[0] as String
                 val whereClause = param.args[1] as String?
                 val whereArgs   = param.args[2] as Array<String>?
-                val result      = param.result as Int
+                val result      = param.result as Int? ?: 0
                 notifyForOperations("onDatabaseDeleted", param) { plugin ->
                     (plugin as IDatabaseHook).onDatabaseDeleted(thisObject, table, whereClause, whereArgs, result)
                 }
