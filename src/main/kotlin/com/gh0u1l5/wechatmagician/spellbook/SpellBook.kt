@@ -45,31 +45,13 @@ object SpellBook {
      * [XC_LoadPackage.LoadPackageParam] 对象
      */
     fun isImportantWechatProcess(lpparam: XC_LoadPackage.LoadPackageParam): Boolean {
-        // 检查进程名
         val processName = lpparam.processName
-        when {
+        return when {
             !processName.contains(':') -> {
-                // 找到主进程 继续
+                lpparam.appInfo.className.contains("com.tencent.mm")
             }
-            //processName.endsWith(":tools") -> {
-                // 找到 :tools 进程 继续
-            //}
-            else -> return false
+            else -> false
         }
-        // 检查微信依赖的JNI库是否存在, 以此判断当前应用是不是微信
-        val features = listOf (
-                "libwechatcommon.so",
-                "libwechatmm.so",
-                "libwechatnetwork.so",
-                "libwechatsight.so",
-                "libwechatxlog.so"
-        )
-        return try {
-            val libraryDir = File(lpparam.appInfo.nativeLibraryDir)
-            features.filter { filename ->
-                File(libraryDir, filename).exists()
-            }.size >= 3
-        } catch (t: Throwable) { false }
     }
 
     /**
