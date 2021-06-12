@@ -23,7 +23,7 @@ object Classes {
 
     val XmlParser: Class<*> by wxLazy("XmlParser") {
         findClassesFromPackage(wxLoader!!, wxClasses!!, "$wxPackageName.sdk.platformtools")
-                .filterByMethod(C.Map, C.String, C.String)
+                .filterByMethod(C.String, C.Node)
                 .firstOrNull()
     }
 }

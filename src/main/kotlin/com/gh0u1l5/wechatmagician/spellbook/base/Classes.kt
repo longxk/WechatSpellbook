@@ -17,10 +17,10 @@ class Classes(private val classes: List<Class<*>>) {
         private const val TAG = "Reflection"
     }
     
-    fun filterBySuper(superClass: Class<*>?): Classes {
-        return Classes(classes.filter { it.superclass == superClass }.also {
+    fun filterBySuper(superClass: Class<*>): Classes {
+        return Classes(classes.filter { superClass.isAssignableFrom(it) }.also {
             if (it.isEmpty()) {
-                Log.w(TAG, "filterBySuper found nothing, super class = ${superClass?.simpleName}")
+                Log.w(TAG, "filterBySuper found nothing, super class = ${superClass.simpleName}")
             }
         })
     }

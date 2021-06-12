@@ -44,6 +44,7 @@ object C {
     val NotificationManager = android.app.NotificationManager::class.java
     val View = android.view.View::class.java
     val ViewGroup = android.view.ViewGroup::class.java
+    val Node = org.w3c.dom.Node::class.java
 
     val ByteArray = ByteArray::class.java
     val IntArray = IntArray::class.java

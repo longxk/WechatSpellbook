@@ -8,6 +8,7 @@ import java.lang.reflect.Method
 
 object Methods {
     val XmlParser_parse: Method by wxLazy("XmlParser_parse") {
-        findMethodsByExactParameters(XmlParser, C.Map, C.String, C.String).firstOrNull()
+        findMethodsByExactParameters(XmlParser, C.Map, C.String, C.String).firstOrNull() ?:
+        findMethodsByExactParameters(XmlParser, C.Map, C.String, C.String, C.String).firstOrNull()
     }
 }
